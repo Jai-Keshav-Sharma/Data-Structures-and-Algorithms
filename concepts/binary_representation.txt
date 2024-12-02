@@ -1,0 +1,15 @@
+step 1) if NUM > 1
+    a) push NUM on stack
+    b) recursively call function with 'NUM / 2'
+step 2)
+    a) pop NUM from stack, divide it by 2 and print it's remainder.
+
+void bin(unsigned n)
+{
+    /* step 1 */
+    if (n > 1)
+        bin(n / 2);
+
+    /* step 2 */
+    cout << n % 2;
+}

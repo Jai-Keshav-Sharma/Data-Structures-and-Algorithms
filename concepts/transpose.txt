@@ -1,0 +1,12 @@
+to find the transpose of a matrix in place, i.e., without making another matrix fo n x n size;
+
+NOTE: THE KEY OBSERVATION IS THAT THE DIAGONAL ELEMENTS REMAINS UNCHANGED EVEN IN THE TRANSPOSE AND WE ONLY HAVE TO CHANGE THE POSITION OF 
+REST ELEMENTS
+
+for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+
+STRIVER'S SDE ROTATE IMAGE 90 DEG CLOCKWISE PROBLEM
