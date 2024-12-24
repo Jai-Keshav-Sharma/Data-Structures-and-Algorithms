@@ -1,3 +1,5 @@
+//LetCode Problem: 124. Binary Tree Maximum Path Sum
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -27,6 +29,16 @@ public:
                                                            right(right) {}
     };
 
+    /**
+     * @brief Computes the maximum path sum in a binary tree.
+     * 
+     * This function recursively calculates the maximum path sum for a given binary tree node.
+     * It updates the result reference with the highest path sum found.
+     * 
+     * @param root Pointer to the root node of the binary tree.
+     * @param res Reference to an integer that stores the maximum path sum found so far.
+     * @return int The maximum path sum for the current node.
+     */
     int solve(TreeNode *root, int &res)
     {
         if (root == nullptr)
