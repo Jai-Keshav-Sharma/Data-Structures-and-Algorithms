@@ -1,5 +1,3 @@
-// LeetCode 543. Diameter of Binary Tree
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -18,17 +16,6 @@ using namespace std;
 class Solution
 {
 public:
-    /**
-     * @brief Helper function to calculate the diameter of a binary tree.
-     *
-     * This function computes the height of the tree while updating the diameter
-     * (the longest path between any two nodes in the tree) using a reference variable.
-     *
-     * @param root Pointer to the root node of the binary tree.
-     * @param res Reference to an integer that stores the maximum diameter found so far.
-     * @return int The height of the current subtree.
-     */
-
     struct TreeNode
     {
         int val;
@@ -48,20 +35,16 @@ public:
         int l = solve(root->left, res);
         int r = solve(root->right, res);
 
-        int temp = max(l, r) + 1;
-        int ans = max(temp, l + r + 1);
-        res = max(res, ans);
+        int temp = max(max(l, r) + root->val, root->val);
+        int ans = max(temp, l + r + root->val);
+        res = max(ans, res);
 
         return temp;
     }
-    int diameterOfBinaryTree(TreeNode *root)
+    int maxPathSum(TreeNode *root)
     {
         int res = INT_MIN;
         solve(root, res);
-        return res - 1;
-        /*-1 bcz this code was intented to return the number of nodes int the
-           longest path b/w two nodes   (including the two nodes) /but here what
-           they asked is the length of the path which will be the number of
-                nodes in the longest path - 1*/
+        return res;
     }
 };
