@@ -1,1 +1,0 @@
-deleteAtPosition(head, tail, 3)
