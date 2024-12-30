@@ -1,12 +1,12 @@
-//LeetCode 206. Reverse Linked List
+// LeetCode 206. Reverse Linked List
 
 struct ListNode
 {
     int val;
     ListNode *next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+    // Node() : val(0), next(nullptr) {}
+    // Node(int x) : val(x), next(nullptr) {}
+    // Node(int x, ListNode *next) : val(x), next(next) {}
 };
 
 class Solution
@@ -35,12 +35,12 @@ public:
 
     // APPROACH - II
 
-    Node *solve(Node *&head)
+    ListNode *solve(ListNode *&head)
     {
         if (head == nullptr || head->next == nullptr)
             return head;
 
-        Node *smallHead = solve(head->next);
+        ListNode *smallHead = solve(head->next);
         head->next->next = head;
         head->next = nullptr;
 
