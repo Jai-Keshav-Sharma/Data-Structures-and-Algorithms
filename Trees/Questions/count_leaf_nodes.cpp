@@ -19,6 +19,16 @@ public:
     }
 };
 
+/**
+ * @brief Counts the number of leaf nodes in a binary tree.
+ *
+ * This function recursively traverses the binary tree and increments the count
+ * whenever a leaf node is encountered. A leaf node is defined as a node with no
+ * children (both left and right pointers are null).
+ *
+ * @param root Pointer to the root node of the binary tree.
+ * @param count Reference to an integer that will store the count of leaf nodes.
+ */
 void solve(BinaryTreeNode<int> *root, int &count)
 {
     if (root == nullptr)
