@@ -1,57 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T>
-class TreeNode
-{
-public:
-    T data;
-    TreeNode<T> *left;
-    TreeNode<T> *right;
+/**
+ * Definition for a binary tree node.
+ */
 
-    TreeNode(T data)
-    {
-        this->data = data;
-        left = NULL;
-        right = NULL;
-    }
+struct TreeNode
+{
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+                                                       right(right) {}
 };
 
-/**
- * @brief Computes the diameter of the binary tree.
- *
- * This function calculates the diameter of a binary tree, which is the length
- * of the longest path between any two nodes in the tree. The path may or may
- * not pass through the root.
- *
- * @param root Pointer to the root node of the binary tree.
- * @param res Reference to an integer that stores the result (diameter) of the tree.
- * @return The height of the current node.
- */
-int solve(TreeNode<int> *root, int &res)
+class Solution
 {
-    if (root == nullptr)
-        return 0;
+private:
+    /**
+     * @brief Helper function to calculate the diameter of a binary tree.
+     *
+     * This function computes the height of the tree rooted at the given node
+     * and updates the diameter (the longest path between any two nodes in the tree).
+     *
+     * @param root Pointer to the root node of the binary tree.
+     * @param diameter Reference to an integer that stores the diameter of the tree.
+     * @return int The height of the tree rooted at the given node.
+     */
+    int solve(TreeNode *root, int &diameter)
+    {
+        if (root == nullptr)
+            return 0;
 
-    int l = solve(root->left, res);
-    int r = solve(root->right, res);
+        int l = solve(root->left, diameter);
+        int r = solve(root->right, diameter);
 
-    int temp = max(l, r) + 1;
-    int ans = max(temp, l + r + 1);
+        diameter = max(diameter, l + r);
 
-    int res = max(res, ans);
+        return 1 + max(l, r);
+    }
 
-    return ans;
-}
+public:
+    int diameterOfBinaryTree(TreeNode *root)
+    {
+        int diameter = INT_MIN;
+        solve(root, diameter);
 
-int diameterOfBinaryTree(TreeNode<int> *root)
-{
-    int res = 0;
-    solve(root, res);
-
-    // number of nodes in between two farthest nodes is stored in res
-    // but we have been asked to return the number of edges in between
-    // thats why (res - 1) is returned
-
-    return res - 1;
-}
+        return diameter;
+    }
+};
