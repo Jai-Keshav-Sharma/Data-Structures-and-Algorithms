@@ -103,7 +103,7 @@ void postOrder(Node *root)
     cout << root->data << " ";
 }
 
-Node * buildFromLevelOrder(Node *root)
+Node *buildFromLevelOrder(Node *root)
 {
     queue<Node *> q;
 
@@ -142,6 +142,98 @@ Node * buildFromLevelOrder(Node *root)
     return root;
 }
 
+Node *inOrderPredecessor(Node *root)
+{
+    if (root->left == nullptr)
+        return root;
+
+    Node *temp = root;
+    temp = temp->left;
+    while (temp->right != nullptr)
+    {
+        temp = temp->right;
+    }
+    return temp;
+}
+
+void MorrisTraversalInorder(Node *root)
+{
+    if (root == nullptr)
+        return;
+
+    Node *temp = root;
+    Node *predec = nullptr;
+
+    while (temp != nullptr)
+    {
+        if (temp->left == nullptr)
+        {
+            cout << temp->data << " ";
+            temp = temp->right;
+        }
+        else
+        {
+            predec = temp->left;
+
+            while (predec->right != nullptr && predec->right != temp)
+            {
+                predec = predec->right;
+            }
+
+            if (predec->right == nullptr)
+            {
+                predec->right = temp;
+                temp = temp->left;
+            }
+            else
+            {
+                predec->right = nullptr;
+                cout << temp->data << " ";
+                temp = temp->right;
+            }
+        }
+    }
+}
+
+void MorrisTraversalPreorder(Node *root)
+{
+    if (root == nullptr)
+        return;
+
+    Node *temp = root;
+    Node *predec = nullptr;
+
+    while (temp != nullptr)
+    {
+        if (temp->left == nullptr)
+        {
+            cout << temp->data << " ";
+            temp = temp->right;
+        }
+        else
+        {
+            predec = temp->left;
+
+            while (predec->right != nullptr && predec->right != temp)
+            {
+                predec = predec->right;
+            }
+
+            if (predec->right == nullptr)
+            {
+                predec->right = temp;
+                cout << temp->data << " ";
+                temp = temp->left;
+            }
+            else
+            {
+                predec->right = nullptr;
+                temp = temp->right;
+            }
+        }
+    }
+}
+
 int main()
 {
     Node *root = nullptr;
@@ -159,11 +251,14 @@ int main()
     cout << "\nInorder traversal is: " << endl;
     inOrder(root);
 
-    // cout << "\nPreorder traversal is: " << endl;
-    // preOrder(root);
+    cout << "\nPreorder traversal is: " << endl;
+    preOrder(root);
 
-    // cout << "\nPostorder traversal is: " << endl;
-    // postOrder(root);
+    cout << "\nMorris traversal (Inorder) is: " << endl;
+    MorrisTraversalInorder(root);
+
+    cout << "\nMorris traversal(Preorder) is: " << endl;
+    MorrisTraversalPreorder(root);
 
     return 0;
 }
