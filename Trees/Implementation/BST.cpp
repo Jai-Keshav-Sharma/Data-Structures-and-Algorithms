@@ -75,6 +75,59 @@ void levelOrderTraversal(Node *&root)
     }
 }
 
+Node * minValue(Node * root) {
+    Node * temp = root;
+    while(temp -> left) {
+        temp = temp -> left;
+    }
+    return temp;
+
+}
+
+Node * deleteNode(Node * root, int key) {
+    if(root == nullptr)
+        return nullptr;
+    if(root -> data == key) {
+        // 0 children
+        if(!root -> left && !root -> right) {
+            delete root;
+            return nullptr;
+        }
+
+        // 1 child(left)
+        if(root -> left && !root -> right) {
+            Node * temp = root -> left;
+            delete root;
+            return temp;
+        }
+
+        // 1 child(right)
+        if(root -> left && !root -> right) {
+            Node * temp = root -> left;
+            delete root;
+            return temp;
+        }
+
+        //2 children
+        if(root -> left && root -> right) {
+            int mini = minValue(root -> right) -> data;
+            root -> data = mini;
+            root -> right = deleteNode(root -> right, mini);
+            return root;
+        }
+    }
+    else if(root -> data < key) {
+        root -> right = deleteNode(root -> right, key);
+        return root;
+    }
+    else {
+        root -> left = deleteNode(root -> left, key);
+        return root;
+    }
+    return nullptr;
+
+}
+
 int main()
 {
     Node *root = nullptr;
