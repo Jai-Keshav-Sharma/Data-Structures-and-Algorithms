@@ -3,7 +3,7 @@ using namespace std;
 
 /**
  * @brief Recursively counts the number of subsets in the given array that sum up to a specific value.
- * 
+ *
  * @param nums A reference to a vector of integers representing the array.
  * @param i The current index in the array.
  * @param sum The current sum of the subset being considered.
