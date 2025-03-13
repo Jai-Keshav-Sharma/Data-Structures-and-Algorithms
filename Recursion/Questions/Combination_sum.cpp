@@ -8,7 +8,7 @@ class Solution
 private:
     /**
      * @brief Recursive function to find all unique combinations in candidates where the candidate numbers sum to target.
-     * 
+     *
      * @param candidates Vector of candidate numbers.
      * @param i Current index in the candidates vector.
      * @param target The remaining target sum to be achieved.
