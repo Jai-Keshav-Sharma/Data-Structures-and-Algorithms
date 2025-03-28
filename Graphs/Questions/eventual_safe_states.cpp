@@ -1,4 +1,5 @@
 // LeetCode 802. Find Eventual Safe States
+// using DFS
 
 #include <bits/stdc++.h>
 using namespace std;
